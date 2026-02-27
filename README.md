@@ -1,2 +1,2 @@
 # InsulinApp
-App for counting catbs and insulin
+App for counting carbs and insulin
