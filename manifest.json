@@ -1,9 +1,9 @@
 {
-  "name": "Calculator Insulină",
-  "short_name": "Insulină",
+  "name": "InsulinApp",
+  "short_name": "InsulinApp",
   "description": "Calculator carbohidrați și unități de insulină",
-  "start_url": "/InsulinApp/",
-  "scope": "/InsulinApp/",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#fdf6f9",
   "theme_color": "#e8638c",
