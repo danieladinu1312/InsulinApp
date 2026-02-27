@@ -880,13 +880,7 @@ Dacă nu găsești informații: negasit=true, carbohidrati_100g=0, carbohidrati_
   } catch (err) {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('searchBtn').disabled = false;
-    if (err.message && err.message.includes('401')) {
-      errorMsg.textContent = '🔑 Cheia API este invalidă. Verifică în Setări.';
-    } else if (err.message && err.message.includes('Failed to fetch')) {
-      errorMsg.textContent = '❌ Browserul blochează conexiunea. Încearcă să deschizi aplicația direct în Chrome (nu ca PWA instalată).';
-    } else {
-      errorMsg.textContent = '❌ ' + (err.message || 'Eroare necunoscută. Verifică internetul.');
-    }
+    errorMsg.textContent = '❌ ' + (err.message || 'Eroare necunoscută') + ' | API key: ' + (getApiKey() ? getApiKey().substring(0,10) + '...' : 'LIPSA');
     errorMsg.style.display = 'block';
   }
 }
