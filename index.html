@@ -831,7 +831,8 @@ async function searchFood() {
         "Content-Type": "application/json",
         "x-api-key": apiKey,
         "anthropic-version": "2023-06-01",
-        "anthropic-dangerous-allow-browser": "true"
+        "anthropic-dangerous-allow-browser": "true",
+        "Access-Control-Allow-Origin": "*"
       },
       body: JSON.stringify({
         model: "claude-opus-4-6",
@@ -849,7 +850,7 @@ Dacă nu găsești informații: negasit=true, carbohidrati_100g=0, carbohidrati_
     const data = await response.json();
 
     if (data.error) {
-      throw new Error(data.error.message || 'Eroare API');
+      throw new Error('API: ' + (data.error.message || JSON.stringify(data.error)));
     }
 
     const text = data.content.map(i => i.text || "").join("");
@@ -884,8 +885,10 @@ Dacă nu găsești informații: negasit=true, carbohidrati_100g=0, carbohidrati_
     document.getElementById('searchBtn').disabled = false;
     if (err.message && err.message.includes('401')) {
       errorMsg.textContent = '🔑 Cheia API este invalidă. Verifică în Setări.';
+    } else if (err.message && err.message.includes('Failed to fetch')) {
+      errorMsg.textContent = '❌ Browserul blochează conexiunea. Încearcă să deschizi aplicația direct în Chrome (nu ca PWA instalată).';
     } else {
-      errorMsg.textContent = '❌ Eroare de conexiune. Verifică internetul și încearcă din nou.';
+      errorMsg.textContent = '❌ ' + (err.message || 'Eroare necunoscută. Verifică internetul.');
     }
     errorMsg.style.display = 'block';
   }
