@@ -825,14 +825,14 @@ async function searchFood() {
     : `Cantitate: necunoscută — caută gramajul tipic al acestui produs`;
 
   try {
-    const response = await fetch("https://corsproxy.io/?https://api.anthropic.com/v1/messages", {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "x-api-key": apiKey,
         "anthropic-version": "2023-06-01",
         "anthropic-dangerous-allow-browser": "true",
-        "Access-Control-Allow-Origin": "*"
+        "anthropic-dangerous-direct-browser-access": "true"
       },
       body: JSON.stringify({
         model: "claude-haiku-4-5-20251001",
